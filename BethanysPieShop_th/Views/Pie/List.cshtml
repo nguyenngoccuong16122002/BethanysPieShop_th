@@ -1,0 +1,32 @@
+﻿@model PiesListViewModel
+
+
+<h1>@Model.CurrentCategory</h1>
+<h1>Search</h1>
+
+<form asp-action="search" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="List">Back to Full List</a>
+        </p>
+    </div>
+</form>
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col">
+            @foreach (var pie in Model.Pies)
+            {
+                <partial name="_PieCard" model="pie" />
+            }
+        </div>
+
+    </div>
+}
+
+@foreach (var pie in Model.Pies)
+{
+    <partial name="_PieCard" model="pie" />
+}
